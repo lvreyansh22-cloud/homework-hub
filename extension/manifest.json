@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Homework Hub HAC Importer",
+  "version": "0.1.0",
+  "description": "Imports assignment data from the HAC Classwork page into Homework Hub.",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": [
+    "https://hac23.esp.k12.ar.us/*",
+    "https://*.vercel.app/*",
+    "http://localhost:3000/*"
+  ],
+  "background": {"service_worker": "background.js"},
+  "content_scripts": [
+    {"matches": ["https://hac23.esp.k12.ar.us/HomeAccess/Classes/Classwork*"], "js": ["hac-content.js"], "run_at": "document_idle"},
+    {"matches": ["https://*.vercel.app/*", "http://localhost:3000/*"], "js": ["app-content.js"], "run_at": "document_idle"}
+  ]
+}
